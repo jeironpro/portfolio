@@ -1,0 +1,49 @@
+name: Rendimiento
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  medir:
+    name: Comparar con la línea base
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: herramientas/rendimiento/package-lock.json
+
+      - name: Instalar dependencias
+        working-directory: herramientas/rendimiento
+        run: npm ci
+
+      - name: Medir y comparar
+        working-directory: herramientas/rendimiento
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: |
+          set -o pipefail
+          npm run medir | tee medicion.txt
+
+      - name: Publicar el resumen
+        if: ${{ !cancelled() }}
+        working-directory: herramientas/rendimiento
+        run: |
+          {
+            echo '### Rendimiento y SEO'
+            echo
+            echo '```'
+            cat medicion.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"

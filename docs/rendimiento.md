@@ -95,6 +95,12 @@ npm run medir
 Para medir otro destino: `SITIO=https://otro.example/ npm run medir`. Si se cambia la
 línea base, actualizar también este documento y el historial.
 
+El flujo [`Rendimiento`](../.github/workflows/rendimiento.yml) ejecuta la comparación
+cada **lunes a las 06:00 UTC**, y también a mano desde la pestaña Actions. Si sale con
+código 1, GitHub notifica el fallo y el resumen del run incluye la tabla completa.
+GitHub desactiva los flujos programados tras 60 días sin actividad en el repositorio;
+si eso pasa, basta con volver a activarlo desde Actions.
+
 ## Limitaciones conocidas
 
 - **Datos de laboratorio.** La API de CrUX no tiene cuota disponible y el repositorio es
