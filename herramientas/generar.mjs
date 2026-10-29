@@ -177,6 +177,16 @@ function generar(lang) {
   html = html.replace(/[ \t]*<nav class="idioma"[\s\S]*?<\/nav>/, nav(lang, textos.idioma));
 
   // Las páginas viven un nivel por debajo: los recursos suben con ../
+  // El srcset va primero, porque en una lista solo la primera URL sigue a ="
+  // y las demás quedarían sin reescribir.
+  html = html.replace(/srcset="([^"]*)"/g, (_, lista) => {
+    const urls = lista.split(',').map((parte) => {
+      const [url, ...resto] = parte.trim().split(/\s+/);
+      const destino = url.startsWith('assets/') ? `../${url}` : url;
+      return [destino, ...resto].join(' ');
+    });
+    return `srcset="${urls.join(', ')}"`;
+  });
   html = html.replace(/="assets\//g, '="../assets/');
 
   if (html.includes('{anio}')) throw new Error(`${lang}: quedó el marcador {anio}`);
