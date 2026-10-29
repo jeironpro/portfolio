@@ -1,0 +1,35 @@
+name: Accesibilidad
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  axe:
+    name: axe-core en las tres páginas
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v4
+
+      - name: Preparar Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: herramientas/accesibilidad/package-lock.json
+
+      - name: Instalar dependencias
+        working-directory: herramientas/accesibilidad
+        run: npm ci
+
+      - name: Comprobar accesibilidad
+        working-directory: herramientas/accesibilidad
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: npm test

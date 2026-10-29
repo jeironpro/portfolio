@@ -1,0 +1,14 @@
+{
+  "name": "portafolio-accesibilidad",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Comprueba con axe-core las tres páginas del portafolio en móvil y escritorio.",
+  "scripts": {
+    "test": "node revisar.mjs"
+  },
+  "devDependencies": {
+    "axe-core": "^4.10.2",
+    "puppeteer-core": "^24.0.0"
+  }
+}

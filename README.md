@@ -1,8 +1,9 @@
 # Portafolio — Jeiron Espinal
 
 Sitio personal de una sola página: presentación, proyectos de formación y el stack con
-el que trabajo. Es HTML, CSS y JavaScript sin dependencias; la única petición externa es
-la tipografía JetBrains Mono desde Google Fonts. El sitio publicado es estático: las
+el que trabajo. Es HTML, CSS y JavaScript sin dependencias y sin peticiones a dominios
+externos: la tipografía JetBrains Mono se sirve desde `assets/fonts/`. El sitio publicado
+es estático: las
 versiones catalana e inglesa se generan con un script de Node que no usa paquetes.
 
 **En línea:** <https://jeironpro.github.io/portfolio/>
@@ -25,7 +26,8 @@ versiones catalana e inglesa se generan con un script de Node que no usa paquete
 │   └── img/                Retrato en WebP y JPG (Open Graph)
 ├── herramientas/
 │   ├── generar.mjs         Genera ca/ y en/ desde index.html
-│   └── textos.json         Textos catalanes e ingleses
+│   ├── textos.json         Textos catalanes e ingleses
+│   └── accesibilidad/      Comprobación con axe-core (npm test)
 ├── docs/capturas/          Capturas de referencia de cada sección
 ├── robots.txt
 ├── sitemap.xml
@@ -85,6 +87,16 @@ El año del pie no está escrito a mano: el generador resuelve el marcador `{ani
 - Contraste mínimo de 7:1 en el texto secundario y 4.5:1 en el resto (WCAG AA).
 - `prefers-reduced-motion` detiene la cinta, el parallax del retrato y las transiciones.
 - Un solo `h1`, jerarquía de encabezados sin saltos y `aria-hidden` solo en lo decorativo.
+
+La comprobación es automática. `herramientas/accesibilidad` pasa axe-core por las tres
+páginas, en móvil y escritorio, y el flujo de GitHub Actions la repite en cada push:
+falla si aparece cualquier violación A o AA.
+
+```bash
+cd herramientas/accesibilidad
+npm install   # solo la primera vez
+npm test
+```
 
 ## SEO
 
