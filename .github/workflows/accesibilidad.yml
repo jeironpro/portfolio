@@ -41,4 +41,22 @@ jobs:
         working-directory: herramientas/accesibilidad
         env:
           CHROME_PATH: /usr/bin/google-chrome
-        run: npm run enlaces
+        run: |
+          set -o pipefail
+          npm run --silent enlaces | tee enlaces.txt
+
+      - name: Publicar el resumen
+        if: ${{ !cancelled() }}
+        working-directory: herramientas/accesibilidad
+        run: |
+          {
+            echo '### Enlaces y recursos'
+            echo
+            echo '```'
+            if [ -f enlaces.txt ]; then
+              cat enlaces.txt
+            else
+              echo 'No se generó el informe.'
+            fi
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
