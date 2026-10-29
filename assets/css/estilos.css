@@ -593,14 +593,16 @@ button:focus-visible {
   font-weight: 500;
   letter-spacing: -0.03em;
   white-space: nowrap;
-  color: rgba(244, 241, 234, 0.24);
+  /* Opacidades mínimas para superar 4,5:1 sobre el fondo (#14121c),
+     incluso al tamaño más pequeño de la cinta. */
+  color: rgba(244, 241, 234, 0.48);
   transition: color 0.25s ease;
 }
 
-.cinta__grupo li:nth-child(3n + 1) { color: rgba(226, 145, 90, 0.62); }
+.cinta__grupo li:nth-child(3n + 1) { color: rgba(226, 145, 90, 0.78); }
 
-.cinta:hover .cinta__grupo li { color: rgba(244, 241, 234, 0.45); }
-.cinta:hover .cinta__grupo li:nth-child(3n + 1) { color: rgba(226, 145, 90, 0.85); }
+.cinta:hover .cinta__grupo li { color: rgba(244, 241, 234, 0.62); }
+.cinta:hover .cinta__grupo li:nth-child(3n + 1) { color: rgba(226, 145, 90, 0.95); }
 
 @keyframes deslizar {
   from { transform: translateX(0); }
