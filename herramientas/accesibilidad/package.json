@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Comprueba con axe-core las tres páginas del portafolio en móvil y escritorio.",
+  "description": "Comprueba accesibilidad con axe-core y enlaces rotos en las tres páginas del portafolio.",
   "scripts": {
-    "test": "node revisar.mjs"
+    "test": "node revisar.mjs",
+    "enlaces": "node enlaces.mjs"
   },
   "devDependencies": {
     "axe-core": "^4.10.2",

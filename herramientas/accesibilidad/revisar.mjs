@@ -10,79 +10,19 @@
    habituales de Linux y macOS.
    ============================================================ */
 
-import { createServer } from 'node:http';
-import { readFile, stat } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import puppeteer from 'puppeteer-core';
+import { PAGINAS, chromeInstalado, servir } from './comun.mjs';
 
 const AQUI = import.meta.dirname;
-const RAIZ = path.resolve(AQUI, '../..');
 const AXE = path.join(AQUI, 'node_modules/axe-core/axe.min.js');
 
-const PAGINAS = ['/', '/ca/', '/en/'];
 const VISTAS = [
   { nombre: 'móvil', width: 412, height: 823, deviceScaleFactor: 2.625, mobile: true },
   { nombre: 'escritorio', width: 1280, height: 800, deviceScaleFactor: 1, mobile: false },
 ];
 const ETIQUETAS = ['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa', 'best-practice'];
-
-const TIPOS = {
-  '.html': 'text/html; charset=utf-8',
-  '.css': 'text/css; charset=utf-8',
-  '.js': 'text/javascript; charset=utf-8',
-  '.mjs': 'text/javascript; charset=utf-8',
-  '.json': 'application/json; charset=utf-8',
-  '.svg': 'image/svg+xml',
-  '.webp': 'image/webp',
-  '.jpg': 'image/jpeg',
-  '.jpeg': 'image/jpeg',
-  '.png': 'image/png',
-  '.ico': 'image/vnd.microsoft.icon',
-  '.woff2': 'font/woff2',
-  '.xml': 'application/xml; charset=utf-8',
-  '.txt': 'text/plain; charset=utf-8',
-};
-
-function chromeInstalado() {
-  const candidatos = [
-    process.env.CHROME_PATH,
-    '/usr/bin/google-chrome',
-    '/usr/bin/google-chrome-stable',
-    '/usr/bin/chromium',
-    '/usr/bin/chromium-browser',
-    '/opt/google/chrome/chrome',
-    '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
-  ].filter(Boolean);
-  return candidatos.find((ruta) => existsSync(ruta));
-}
-
-function servir() {
-  const servidor = createServer(async (peticion, respuesta) => {
-    const ruta = decodeURIComponent(peticion.url.split('?')[0]);
-    const relativa = ruta === '/' ? 'index.html' : ruta.replace(/^\/+/, '');
-    const archivo = path.join(RAIZ, relativa);
-
-    if (!archivo.startsWith(RAIZ)) {
-      respuesta.writeHead(403).end('Prohibido');
-      return;
-    }
-
-    try {
-      const info = await stat(archivo);
-      const destino = info.isDirectory() ? path.join(archivo, 'index.html') : archivo;
-      const cuerpo = await readFile(destino);
-      respuesta.writeHead(200, { 'content-type': TIPOS[path.extname(destino)] || 'application/octet-stream' });
-      respuesta.end(cuerpo);
-    } catch {
-      respuesta.writeHead(404, { 'content-type': 'text/plain; charset=utf-8' }).end('No encontrado');
-    }
-  });
-
-  return new Promise((ok) => {
-    servidor.listen(0, '127.0.0.1', () => ok({ servidor, puerto: servidor.address().port }));
-  });
-}
 
 const ejecutable = chromeInstalado();
 if (!ejecutable) {

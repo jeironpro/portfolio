@@ -11,7 +11,7 @@ permissions:
 
 jobs:
   axe:
-    name: axe-core en las tres páginas
+    name: Accesibilidad, enlaces y recursos
     runs-on: ubuntu-latest
     steps:
       - name: Descargar el repositorio
@@ -33,3 +33,10 @@ jobs:
         env:
           CHROME_PATH: /usr/bin/google-chrome
         run: npm test
+
+      - name: Comprobar enlaces y recursos
+        if: ${{ !cancelled() }}
+        working-directory: herramientas/accesibilidad
+        env:
+          CHROME_PATH: /usr/bin/google-chrome
+        run: npm run enlaces

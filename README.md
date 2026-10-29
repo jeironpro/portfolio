@@ -27,7 +27,7 @@ versiones catalana e inglesa se generan con un script de Node que no usa paquete
 ├── herramientas/
 │   ├── generar.mjs         Genera ca/ y en/ desde index.html
 │   ├── textos.json         Textos catalanes e ingleses
-│   └── accesibilidad/      Comprobación con axe-core (npm test)
+│   └── accesibilidad/      axe-core y enlaces rotos (npm test, npm run enlaces)
 ├── docs/capturas/          Capturas de referencia de cada sección
 ├── robots.txt
 ├── sitemap.xml
@@ -97,6 +97,27 @@ cd herramientas/accesibilidad
 npm install   # solo la primera vez
 npm test
 ```
+
+## Enlaces y recursos
+
+`herramientas/accesibilidad/enlaces.mjs` carga las tres páginas en Chrome y comprueba:
+
+- **Recursos** que pide el navegador (CSS, JS, tipografía, favicon y la variante de
+  retrato que elige cada `srcset`): falla si alguno devuelve 4xx o 5xx.
+- **Enlaces internos**, incluidas las URL absolutas del sitio que aparecen en el HTML:
+  se resuelven contra el servidor local, no contra GitHub Pages, así que una rotura se
+  detecta antes de publicar.
+- **Anclas** (`#seccion`): comprueba que el `id` exista en la página de destino.
+- **Enlaces externos**: falla solo con 404 o 410. Un 401, 403, 429, 5xx o un tiempo
+  agotado se informa como «sin verificar», porque depende de terceros y no del sitio.
+
+```bash
+cd herramientas/accesibilidad
+npm run enlaces
+```
+
+El flujo de GitHub Actions ejecuta las dos comprobaciones en cada push, aunque la de
+accesibilidad falle, para que un run muestre los dos resultados a la vez.
 
 ## SEO
 
