@@ -142,8 +142,8 @@ npm install   # solo la primera vez
 npm run medir
 ```
 
-Mide las tres páginas en móvil (dos pasadas) y escritorio, y sale con código 1 si alguna
-métrica se sale de la línea base. Un flujo de GitHub Actions la ejecuta cada lunes y avisa
+Mide las tres páginas en móvil y escritorio (dos pasadas cada una) y sale con código 1 si
+alguna métrica se sale de la línea base. Un flujo de GitHub Actions la ejecuta cada lunes y avisa
 si hay desviaciones.
 
 ## Ver en local

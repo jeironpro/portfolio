@@ -3,9 +3,9 @@
    Repite la medición de rendimiento y SEO con Lighthouse y la
    compara con la línea base de linea-base.json.
 
-   Mide las tres páginas en móvil (dos pasadas y se queda con la
-   mejor) y en escritorio (una pasada). Falla si alguna métrica
-   se sale de los umbrales documentados en docs/rendimiento.md.
+   Mide las tres páginas dos veces en móvil y en escritorio, se
+   queda con la mejor pasada de cada vista y falla si alguna
+   métrica se sale de los umbrales de docs/rendimiento.md.
 
    Uso:  npm run medir        (desde herramientas/rendimiento)
 
@@ -29,7 +29,7 @@ const BASE = process.env.LINEA_BASE || path.join(AQUI, 'linea-base.json');
 const PAGINAS = ['/', '/ca/', '/en/'];
 const VISTAS = [
   { nombre: 'móvil', preset: null, pasadas: 2 },
-  { nombre: 'escritorio', preset: 'desktop', pasadas: 1 },
+  { nombre: 'escritorio', preset: 'desktop', pasadas: 2 },
 ];
 
 if (!existsSync(CLI)) {

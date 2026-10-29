@@ -78,8 +78,9 @@ antes de tratarlo como regresión: es el artefacto conocido del Chrome headless.
 
 `herramientas/rendimiento/medir.mjs` aplica este método y estos umbrales:
 
-- Mide las tres páginas en móvil **dos veces** y se queda con la mejor pasada; en
-  escritorio mide una vez.
+- Mide las tres páginas **dos veces** en móvil y en escritorio, y se queda con la mejor
+  pasada de cada vista. Así el ruido de un runner compartido no se confunde con una
+  regresión.
 - Compara contra [`linea-base.json`](../herramientas/rendimiento/linea-base.json), que
   guarda los valores de este informe en formato legible por el script.
 - Trata una nota de 98 como **aviso**, no como regresión, si la única auditoría
