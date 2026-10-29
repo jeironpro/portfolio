@@ -74,6 +74,27 @@ Medir con el mismo método y comparar contra la tabla. Se considera regresión s
 Si la única diferencia es un Speed Index alto con **TBT 0 y CLS 0**, repetir la medición
 antes de tratarlo como regresión: es el artefacto conocido del Chrome headless.
 
+## Comprobación automática
+
+`herramientas/rendimiento/medir.mjs` aplica este método y estos umbrales:
+
+- Mide las tres páginas en móvil **dos veces** y se queda con la mejor pasada; en
+  escritorio mide una vez.
+- Compara contra [`linea-base.json`](../herramientas/rendimiento/linea-base.json), que
+  guarda los valores de este informe en formato legible por el script.
+- Trata una nota de 98 como **aviso**, no como regresión, si la única auditoría
+  ponderada por debajo de 1 es el Speed Index y TBT y CLS están dentro de umbral.
+- Sale con **código 1** si hay cualquier regresión y con **0** si no la hay.
+
+```bash
+cd herramientas/rendimiento
+npm install   # solo la primera vez
+npm run medir
+```
+
+Para medir otro destino: `SITIO=https://otro.example/ npm run medir`. Si se cambia la
+línea base, actualizar también este documento y el historial.
+
 ## Limitaciones conocidas
 
 - **Datos de laboratorio.** La API de CrUX no tiene cuota disponible y el repositorio es

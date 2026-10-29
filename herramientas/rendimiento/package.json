@@ -1,0 +1,13 @@
+{
+  "name": "portafolio-rendimiento",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Mide rendimiento y SEO con Lighthouse y compara con la línea base del sitio.",
+  "scripts": {
+    "medir": "node medir.mjs"
+  },
+  "devDependencies": {
+    "lighthouse": "^13.6.0"
+  }
+}

@@ -27,7 +27,8 @@ versiones catalana e inglesa se generan con un script de Node que no usa paquete
 ├── herramientas/
 │   ├── generar.mjs         Genera ca/ y en/ desde index.html
 │   ├── textos.json         Textos catalanes e ingleses
-│   └── accesibilidad/      axe-core y enlaces rotos (npm test, npm run enlaces)
+│   ├── accesibilidad/      axe-core y enlaces rotos (npm test, npm run enlaces)
+│   └── rendimiento/        Compara con la línea base (npm run medir)
 ├── docs/
 │   ├── capturas/           Capturas de referencia de cada sección
 │   └── rendimiento.md      Línea base de rendimiento y SEO
@@ -133,7 +134,16 @@ accesibilidad falle, para que un run muestre los dos resultados a la vez.
   dimensiones.
 
 La línea base de rendimiento y SEO, con el método y los umbrales de comparación, está en
-[docs/rendimiento.md](docs/rendimiento.md).
+[docs/rendimiento.md](docs/rendimiento.md). Para repetir la medición:
+
+```bash
+cd herramientas/rendimiento
+npm install   # solo la primera vez
+npm run medir
+```
+
+Mide las tres páginas en móvil (dos pasadas) y escritorio, y sale con código 1 si alguna
+métrica se sale de la línea base.
 
 ## Ver en local
 

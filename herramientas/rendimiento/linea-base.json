@@ -1,0 +1,23 @@
+{
+  "fecha": "2026-10-30",
+  "commit": "6364d13",
+  "sitio": "https://jeironpro.github.io/portfolio/",
+  "lighthouse": "13.6.0",
+  "umbrales": {
+    "fcp": { "porcentaje": 0.1, "milisegundos": 100 },
+    "lcp": { "porcentaje": 0.1, "milisegundos": 100 },
+    "tbt": 50,
+    "cls": 0.01,
+    "pesoKib": 70
+  },
+  "movil": {
+    "/": { "nota": 100, "fcp": 981, "lcp": 1216, "si": 3757, "tbt": 0, "cls": 0, "pesoKib": 63 },
+    "/ca/": { "nota": 100, "fcp": 1006, "lcp": 1239, "si": 3833, "tbt": 1, "cls": 0, "pesoKib": 63 },
+    "/en/": { "nota": 100, "fcp": 1021, "lcp": 1228, "si": 3792, "tbt": 0, "cls": 0, "pesoKib": 63 }
+  },
+  "escritorio": {
+    "/": { "nota": 100, "fcp": 218, "lcp": 283, "si": 347, "tbt": 0, "cls": 0, "pesoKib": 56 },
+    "/ca/": { "nota": 100, "fcp": 220, "lcp": 284, "si": 339, "tbt": 0, "cls": 0, "pesoKib": 56 },
+    "/en/": { "nota": 100, "fcp": 225, "lcp": 288, "si": 341, "tbt": 0, "cls": 0, "pesoKib": 56 }
+  }
+}
