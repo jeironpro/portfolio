@@ -28,7 +28,9 @@ versiones catalana e inglesa se generan con un script de Node que no usa paquete
 │   ├── generar.mjs         Genera ca/ y en/ desde index.html
 │   ├── textos.json         Textos catalanes e ingleses
 │   └── accesibilidad/      axe-core y enlaces rotos (npm test, npm run enlaces)
-├── docs/capturas/          Capturas de referencia de cada sección
+├── docs/
+│   ├── capturas/           Capturas de referencia de cada sección
+│   └── rendimiento.md      Línea base de rendimiento y SEO
 ├── robots.txt
 ├── sitemap.xml
 ├── .gitignore
@@ -129,6 +131,9 @@ accesibilidad falle, para que un run muestre los dos resultados a la vez.
 - `robots.txt` permisivo y `sitemap.xml` con las tres URLs y sus alternativas.
 - Un solo `h1`, encabezados jerárquicos, enlaces con texto e imágenes con `alt` y
   dimensiones.
+
+La línea base de rendimiento y SEO, con el método y los umbrales de comparación, está en
+[docs/rendimiento.md](docs/rendimiento.md).
 
 ## Ver en local
 
