@@ -1,0 +1,11 @@
+# Sistema y editores
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+
+# Registros
+*.log
+
+# Herramientas locales
+.freebuff/

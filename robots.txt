@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jeironpro.github.io/portfolio/sitemap.xml
