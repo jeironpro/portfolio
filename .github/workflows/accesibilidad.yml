@@ -34,7 +34,9 @@ jobs:
         working-directory: herramientas/accesibilidad
         env:
           CHROME_PATH: /usr/bin/google-chrome
-        run: npm test
+        run: |
+          set -o pipefail
+          npm run --silent test | tee accesibilidad.txt
 
       - name: Comprobar enlaces y recursos
         if: ${{ !cancelled() }}
@@ -50,6 +52,16 @@ jobs:
         working-directory: herramientas/accesibilidad
         run: |
           {
+            echo '### Accesibilidad (axe-core)'
+            echo
+            echo '```'
+            if [ -f accesibilidad.txt ]; then
+              cat accesibilidad.txt
+            else
+              echo 'No se generó el informe.'
+            fi
+            echo '```'
+            echo
             echo '### Enlaces y recursos'
             echo
             echo '```'

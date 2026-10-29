@@ -122,7 +122,8 @@ npm run enlaces
 El flujo de GitHub Actions ejecuta las dos comprobaciones en cada push, aunque la de
 accesibilidad falle, para que un run muestre los dos resultados a la vez. Además las
 repite todos los lunes a las 06:30 UTC, para detectar enlaces externos caídos sin que
-haga falta un push. El informe de enlaces se publica en el resumen del run.
+haga falta un push. Los informes de accesibilidad y de enlaces se publican en el
+resumen del run.
 
 ## SEO
 
