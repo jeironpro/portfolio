@@ -6,6 +6,9 @@ externos: la tipografía JetBrains Mono se sirve desde `assets/fonts/`. El sitio
 es estático: las
 versiones catalana e inglesa se generan con un script de Node que no usa paquetes.
 
+[![Accesibilidad](https://github.com/jeironpro/portfolio/actions/workflows/accesibilidad.yml/badge.svg)](https://github.com/jeironpro/portfolio/actions/workflows/accesibilidad.yml)
+[![Rendimiento](https://github.com/jeironpro/portfolio/actions/workflows/rendimiento.yml/badge.svg)](https://github.com/jeironpro/portfolio/actions/workflows/rendimiento.yml)
+
 **En línea:** <https://jeironpro.github.io/portfolio/>
 
 ![Portada del portafolio](docs/capturas/portada.png)
